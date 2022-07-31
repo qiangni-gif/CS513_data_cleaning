@@ -1,0 +1,4 @@
+java -jar yesworkflow-0.2.0-jar-with-dependencies.jar extract python_yw.py -c extract.listfile
+java -jar yesworkflow-0.2.0-jar-with-dependencies.jar graph -c graph.layout=TB -c graph.view=COMBINED python_yw.py > python_yw.gv
+dot -Tpdf python_yw.gv -o python_yw.pdf 
+dot -Tpng python_yw.gv -o python_yw.png

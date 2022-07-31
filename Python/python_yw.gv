@@ -1,0 +1,99 @@
+digraph Workflow {
+rankdir=TB
+fontname=Courier; fontsize=18; labelloc=t
+label="PYTHON-DATA-CLEANING-PROCESS"
+subgraph cluster_workflow_box_outer { label=""; color=black; penwidth=2
+subgraph cluster_workflow_box_inner { label=""; color=white
+node[shape=box style=filled fillcolor="#CCFFCC" peripheries=1 fontname=Courier]
+TransformToPandasDF
+"PHASE1-CLEANING"
+"PHASE1:FindMissingGPS"
+"PHASE1:FindMissingCity"
+"PHASE1:FindMissingState"
+"PHASE1:Iterate:Missing_GPS"
+"PHASE1:Iterate:Missing_City"
+"PHASE1:Iterate:Missing_State"
+"getGPSByZipCode(Zip)"
+"getCityByZipCode(Zip)"
+"getStateByZipCode(Zip)"
+UpdatedGPS
+UpdatedCity
+UpdatedState
+"PHASE1:JoinResults"
+"PHASE2-CLEANING"
+"PHASE2:FindNotNullViolation"
+"PHASE2:Iterate:Violation_Iter"
+"PHASE2:CreateNewColumns"
+"PHASE2:Iterate:SplitViolation_Iter"
+"PHASE2:Iterate:AddViolation_Iter"
+RemoveOldViolationColumn
+ConvertDataframeToCSV
+node[shape=box style="rounded,filled" fillcolor="#FFFFCC" peripheries=1 fontname=Helvetica]
+Food_Inspections_Python_cleaned [shape=record rankdir=LR label="{<f0> Food_Inspections_Python_cleaned |<f1> file\:\{filepath\}\Food_Inspections_Python_cleaned.csv}"];
+Food_Inspections_OpenRefine_cleaned [shape=record rankdir=LR label="{<f0> Food_Inspections_OpenRefine_cleaned |<f1> file\:\{filepath\}\openrefine\Food_Inspections_OpenRefine_cleaned.xlsx}"];
+PANDAS_DATAFRAME
+MISSING_GPS_RECORDS
+MISSING_CITY_RECORDS
+MISSING_STATE_RECORDS
+COMBINED_DATASET
+"PHASE2:VIOLATION_RECORDS"
+"PHASE2:AddNewColumn"
+"PHASE2:Splited_Violation_RECORDS"
+"PHASE2:UpdatedNewViolation"
+CLEAN_DATASET
+node[shape=box style="rounded,filled" fillcolor="#FCFCFC" peripheries=1 fontname=Helvetica]
+TransformToPandasDF -> PANDAS_DATAFRAME
+Food_Inspections_OpenRefine_cleaned -> TransformToPandasDF
+PANDAS_DATAFRAME -> "PHASE1-CLEANING"
+"PHASE1:FindMissingGPS" -> MISSING_GPS_RECORDS
+"PHASE1-CLEANING" -> "PHASE1:FindMissingGPS"
+"PHASE1:FindMissingCity" -> MISSING_CITY_RECORDS
+"PHASE1-CLEANING" -> "PHASE1:FindMissingCity"
+"PHASE1:FindMissingState" -> MISSING_STATE_RECORDS
+"PHASE1-CLEANING" -> "PHASE1:FindMissingState"
+"PHASE1:Iterate:Missing_GPS" -> "getGPSByZipCode(Zip)"
+MISSING_GPS_RECORDS -> "PHASE1:Iterate:Missing_GPS"
+"PHASE1:Iterate:Missing_City" -> "getCityByZipCode(Zip)"
+MISSING_CITY_RECORDS -> "PHASE1:Iterate:Missing_City"
+"PHASE1:Iterate:Missing_State" -> "getStateByZipCode(Zip)"
+MISSING_STATE_RECORDS -> "PHASE1:Iterate:Missing_State"
+Zip -> "getGPSByZipCode(Zip)"
+Zip -> "getCityByZipCode(Zip)"
+Zip -> "getStateByZipCode(Zip)"
+"getGPSByZipCode(Zip)" -> UpdatedGPS
+"getCityByZipCode(Zip)" -> UpdatedCity
+"getStateByZipCode(Zip)" -> UpdatedState
+"PHASE1:JoinResults" -> COMBINED_DATASET
+UpdatedGPS -> "PHASE1:JoinResults"
+UpdatedCity -> "PHASE1:JoinResults"
+UpdatedState -> "PHASE1:JoinResults"
+COMBINED_DATASET -> "PHASE2-CLEANING"
+"PHASE2:FindNotNullViolation" -> "PHASE2:VIOLATION_RECORDS"
+"PHASE2-CLEANING" -> "PHASE2:FindNotNullViolation"
+"PHASE2:VIOLATION_RECORDS" -> "PHASE2:Iterate:Violation_Iter"
+"PHASE2:CreateNewColumns" -> "PHASE2:AddNewColumn"
+Violation_Index -> "PHASE2:CreateNewColumns"
+"PHASE2:Iterate:Violation_Iter" -> "PHASE2:CreateNewColumns"
+"PHASE2:Iterate:SplitViolation_Iter" -> "PHASE2:Splited_Violation_RECORDS"
+"PHASE2:AddNewColumn" -> "PHASE2:Iterate:SplitViolation_Iter"
+"PHASE2:Iterate:AddViolation_Iter" -> "PHASE2:UpdatedNewViolation"
+Violation_Index -> "PHASE2:Iterate:AddViolation_Iter"
+"PHASE2:Splited_Violation_RECORDS" -> "PHASE2:Iterate:AddViolation_Iter"
+RemoveOldViolationColumn -> CLEAN_DATASET
+"PHASE2:UpdatedNewViolation" -> RemoveOldViolationColumn
+ConvertDataframeToCSV -> Food_Inspections_Python_cleaned
+CLEAN_DATASET -> ConvertDataframeToCSV
+}}
+subgraph cluster_input_ports_group_outer { label=""; color=white
+subgraph cluster_input_ports_group_inner { label=""; color=white
+node[shape=circle style="rounded,filled" fillcolor="#FFFFFF" peripheries=1 fontname=Helvetica width=0.2]
+Food_Inspections_OpenRefine_cleaned_input_port [label=""]
+}}
+subgraph cluster_output_ports_group_outer { label=""; color=white
+subgraph cluster_output_ports_group_inner { label=""; color=white
+node[shape=circle style="rounded,filled" fillcolor="#FFFFFF" peripheries=1 fontname=Helvetica width=0.2]
+Food_Inspections_Python_cleaned_output_port [label=""]
+}}
+Food_Inspections_OpenRefine_cleaned_input_port -> Food_Inspections_OpenRefine_cleaned
+Food_Inspections_Python_cleaned -> Food_Inspections_Python_cleaned_output_port
+}
