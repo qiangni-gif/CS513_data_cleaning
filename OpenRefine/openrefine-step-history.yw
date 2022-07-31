@@ -1,0 +1,221 @@
+#@begin Linear_OR #@desc Linear OpenRefine Workflow
+#@param col-name:License_#
+#@param col-name:Location
+#@param expression:value.replace(/\\s+/,'_')
+#@param expression:value.toNumber()
+#@param expression:"value"
+#@param expression:value.trim()
+#@param col-name:Address
+#@param col-name:Longitude
+#@param col-name:Zip
+#@param col-name:Inspection_ID
+#@param col-name:Results
+#@param col-name:Latitude
+#@param col-name:Risk
+#@param col-name:AKA_Name
+#@param expression:value.toUppercase()
+#@param col-name:DBA_Name
+#@param expression:value.toDate()
+#@param col-name:Inspection_Type
+#@param col-name:City
+#@param col-name:Facility_Type
+#@param col-name:Inspection_Date
+#@param expression:value.toTitlecase()
+#@in table0
+#@out table34
+#@begin core/text-transform0#@desc Text transform on cells in column DBA Name using expression value.trim()
+#@param col-name:DBA_Name
+#@param expression:value.trim()
+#@in table0
+#@out table1
+#@end core/text-transform0
+#@begin core/text-transform1#@desc Text transform on cells in column DBA Name using expression value.replace(/\\s+/,' ')
+#@param col-name:DBA_Name
+#@param expression:value.replace(/\\s+/,'_')
+#@in table1
+#@out table2
+#@end core/text-transform1
+#@begin core/text-transform2#@desc Text transform on cells in column DBA Name using expression value.toUppercase()
+#@param col-name:DBA_Name
+#@param expression:value.toUppercase()
+#@in table2
+#@out table3
+#@end core/text-transform2
+#@begin core/mass-edit0#@desc Mass edit cells in column DBA Name
+#@param col-name:DBA_Name
+#@in table3
+#@out table4
+#@end core/mass-edit0
+#@begin core/mass-edit1#@desc Mass edit cells in column DBA Name
+#@param col-name:DBA_Name
+#@in table4
+#@out table5
+#@end core/mass-edit1
+#@begin core/text-transform3#@desc Text transform on cells in column Facility Type using expression value.trim()
+#@param col-name:Facility_Type
+#@param expression:value.trim()
+#@in table5
+#@out table6
+#@end core/text-transform3
+#@begin core/text-transform4#@desc Text transform on cells in column Facility Type using expression value.replace(/\\s+/,' ')
+#@param col-name:Facility_Type
+#@param expression:value.replace(/\\s+/,'_')
+#@in table6
+#@out table7
+#@end core/text-transform4
+#@begin core/text-transform5#@desc Text transform on cells in column Facility Type using expression value.toTitlecase()
+#@param col-name:Facility_Type
+#@param expression:value.toTitlecase()
+#@in table7
+#@out table8
+#@end core/text-transform5
+#@begin core/mass-edit2#@desc Mass edit cells in column Facility Type
+#@param col-name:Facility_Type
+#@in table8
+#@out table9
+#@end core/mass-edit2
+#@begin core/text-transform6#@desc Text transform on cells in column Address using expression value.trim()
+#@param col-name:Address
+#@param expression:value.trim()
+#@in table9
+#@out table10
+#@end core/text-transform6
+#@begin core/text-transform7#@desc Text transform on cells in column Address using expression value.replace(/\\s+/,' ')
+#@param col-name:Address
+#@param expression:value.replace(/\\s+/,'_')
+#@in table10
+#@out table11
+#@end core/text-transform7
+#@begin core/text-transform8#@desc Text transform on cells in column Address using expression value.toUppercase()
+#@param col-name:Address
+#@param expression:value.toUppercase()
+#@in table11
+#@out table12
+#@end core/text-transform8
+#@begin core/mass-edit3#@desc Mass edit cells in column Address
+#@param col-name:Address
+#@in table12
+#@out table13
+#@end core/mass-edit3
+#@begin core/text-transform9#@desc Text transform on cells in column City using expression value.toUppercase()
+#@param col-name:City
+#@param expression:value.toUppercase()
+#@in table13
+#@out table14
+#@end core/text-transform9
+#@begin core/text-transform10#@desc Text transform on cells in column Inspection Date using expression value.toDate()
+#@param col-name:Inspection_Date
+#@param expression:value.toDate()
+#@in table14
+#@out table15
+#@end core/text-transform10
+#@begin core/text-transform11#@desc Text transform on cells in column Inspection Type using expression value.toTitlecase()
+#@param col-name:Inspection_Type
+#@param expression:value.toTitlecase()
+#@in table15
+#@out table16
+#@end core/text-transform11
+#@begin core/mass-edit4#@desc Mass edit cells in column Inspection Type
+#@param col-name:Inspection_Type
+#@in table16
+#@out table17
+#@end core/mass-edit4
+#@begin core/mass-edit5#@desc Mass edit cells in column Inspection Type
+#@param col-name:Inspection_Type
+#@in table17
+#@out table18
+#@end core/mass-edit5
+#@begin core/text-transform12#@desc Text transform on cells in column Results using expression value.toTitlecase()
+#@param col-name:Results
+#@param expression:value.toTitlecase()
+#@in table18
+#@out table19
+#@end core/text-transform12
+#@begin core/text-transform13#@desc Text transform on cells in column Latitude using expression value.toNumber()
+#@param col-name:Latitude
+#@param expression:value.toNumber()
+#@in table19
+#@out table20
+#@end core/text-transform13
+#@begin core/text-transform14#@desc Text transform on cells in column Longitude using expression value.toNumber()
+#@param col-name:Longitude
+#@param expression:value.toNumber()
+#@in table20
+#@out table21
+#@end core/text-transform14
+#@begin core/text-transform15#@desc Text transform on cells in column Inspection ID using expression value.toNumber()
+#@param col-name:Inspection_ID
+#@param expression:value.toNumber()
+#@in table21
+#@out table22
+#@end core/text-transform15
+#@begin core/text-transform16#@desc Text transform on cells in column License # using expression value.toNumber()
+#@param col-name:License_#
+#@param expression:value.toNumber()
+#@in table22
+#@out table23
+#@end core/text-transform16
+#@begin core/text-transform17#@desc Text transform on cells in column Zip using expression value.toNumber()
+#@param col-name:Zip
+#@param expression:value.toNumber()
+#@in table23
+#@out table24
+#@end core/text-transform17
+#@begin core/mass-edit6#@desc Mass edit cells in column Facility Type
+#@param col-name:Facility_Type
+#@in table24
+#@out table25
+#@end core/mass-edit6
+#@begin core/text-transform18#@desc Text transform on cells in column AKA Name using expression value.toUppercase()
+#@param col-name:AKA_Name
+#@param expression:value.toUppercase()
+#@in table25
+#@out table26
+#@end core/text-transform18
+#@begin core/text-transform19#@desc Text transform on cells in column AKA Name using expression value.trim()
+#@param col-name:AKA_Name
+#@param expression:value.trim()
+#@in table26
+#@out table27
+#@end core/text-transform19
+#@begin core/text-transform20#@desc Text transform on cells in column AKA Name using expression value.replace(/\\s+/,' ')
+#@param col-name:AKA_Name
+#@param expression:value.replace(/\\s+/,'_')
+#@in table27
+#@out table28
+#@end core/text-transform20
+#@begin core/mass-edit7#@desc Mass edit cells in column City
+#@param col-name:City
+#@in table28
+#@out table29
+#@end core/mass-edit7
+#@begin core/column-removal0#@desc Remove column Location
+#@param col-name:Location
+#@in table29
+#@out table30
+#@end core/column-removal0
+#@begin core/row-removal0#@desc Remove rows
+#@param col-name:License_#
+#@param expression:"value"
+#@in table30
+#@out table31
+#@end core/row-removal0
+#@begin core/row-removal1#@desc Remove rows
+#@param col-name:Zip
+#@param expression:"value"
+#@in table31
+#@out table32
+#@end core/row-removal1
+#@begin core/row-removal2#@desc Remove rows
+#@param col-name:Inspection_Type
+#@param expression:"value"
+#@in table32
+#@out table33
+#@end core/row-removal2
+#@begin core/row-removal3#@desc Remove rows
+#@param col-name:Risk
+#@param expression:"value"
+#@in table33
+#@out table34
+#@end core/row-removal3
+#@end Linear_OR

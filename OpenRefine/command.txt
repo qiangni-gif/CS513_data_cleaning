@@ -1,0 +1,4 @@
+pip install or2ywtool
+or2yw -i openrefine-step-history.json -o openrefine-step-history.yw -t parallel
+or2yw -i openrefine-step-history.json -ot pdf -o openrefine-step-history.pdf -t parallel
+or2yw -i openrefine-step-history.json -ot png -o openrefine-step-history.png -t parallel
